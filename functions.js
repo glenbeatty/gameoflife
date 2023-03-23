@@ -58,7 +58,7 @@ function initializeGrid(){
 function btnRunToggle(){
     if(gameRunning==0){
         gameRunning = 1;
-        document.getElementById("startBtn").innerHTML = "Stop";
+        document.getElementById("startBtn").innerHTML = "Pause";
         initializeGrid();
     myInterval = setInterval(tick, TICK_MS);
     }
@@ -74,12 +74,18 @@ function btnStep(){
     if(gameRunning == 1){
         btnRunToggle();
     }
-    else{
+        
+    if(gameStepping == 0){
         initializeGrid();
         tick();
-        activeCells.length = 0;
-
+        gameStepping = 1;
     }
+    else{
+        tick(); 
+    }
+    
+
+    
 }
 function btnClear(){
     if(gameRunning == 1){
