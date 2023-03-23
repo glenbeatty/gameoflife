@@ -1,6 +1,7 @@
-const NUM_ROWS = 30;
-const NUM_COLS = 45;
+const NUM_ROWS = 20;
+const NUM_COLS = 40;
 const TICK_MS = 250;
+const cellColour = "yellow";
 var myInterval = 0;
 
 let gameRunning = 0;

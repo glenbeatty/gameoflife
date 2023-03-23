@@ -4,7 +4,7 @@ function update(){
 
     while(i<activeCells.length){
         if((activeCells[i].x>-1)&&(activeCells[i].x<NUM_ROWS)&&(activeCells[i].y>-1)&&(activeCells[i].y<NUM_COLS)){
-            document.getElementById(activeCells[i].toString()).style.backgroundColor = "lightblue"; 
+            document.getElementById(activeCells[i].toString()).style.backgroundColor = cellColour; 
         }
         i++;
     }
@@ -24,10 +24,34 @@ function clear(){
                 cellString = cellString.concat("0");
             }
             cellString = cellString.concat(String(j));
-            document.getElementById(cellString).style.backgroundColor = "white"; 
+            document.getElementById(cellString).style.backgroundColor = "darkgrey"; 
             j++;
         }
         i++;
+    }
+}
+
+function initializeGrid(){
+    let i = 0;
+    while(i<NUM_ROWS){
+        let j = 0;
+        while(j<NUM_COLS){
+            let cellString = "c";
+            if(i<10){
+                cellString = cellString.concat("0");
+            }
+            cellString = cellString.concat(String(i));
+            if(j<10){
+                cellString = cellString.concat("0");
+            }
+            cellString = cellString.concat(String(j));
+            if(document.getElementById(cellString).style.backgroundColor == cellColour){                
+                const newCell = new Cell(i,j);
+                activeCells.push(newCell);
+            }
+            j = j + 1;
+        }
+        i = i + 1;
     }
 }
 
@@ -35,27 +59,7 @@ function btnRunToggle(){
     if(gameRunning==0){
         gameRunning = 1;
         document.getElementById("startBtn").innerHTML = "Stop";
-        let i = 0;
-        while(i<NUM_ROWS){
-            let j = 0;
-            while(j<NUM_COLS){
-                let cellString = "c";
-                if(i<10){
-                    cellString = cellString.concat("0");
-                }
-                cellString = cellString.concat(String(i));
-                if(j<10){
-                    cellString = cellString.concat("0");
-                }
-                cellString = cellString.concat(String(j));
-                if(document.getElementById(cellString).style.backgroundColor == "lightblue"){                
-                    const newCell = new Cell(i,j);
-                    activeCells.push(newCell);
-                }
-                j = j + 1;
-            }
-            i = i + 1;
-        }
+        initializeGrid();
     myInterval = setInterval(tick, TICK_MS);
     }
 
@@ -66,14 +70,32 @@ function btnRunToggle(){
         clearInterval(myInterval);
     }
 }
+function btnStep(){
+    if(gameRunning == 1){
+        btnRunToggle();
+    }
+    else{
+        initializeGrid();
+        tick();
+        activeCells.length = 0;
+
+    }
+}
+function btnClear(){
+    if(gameRunning == 1){
+        btnRunToggle();
+    }
+    clear();
+    activeCells.length = 0; 
+}
 
 function colourCell(cell){
     if(gameRunning == 0){
-        if(document.getElementById(cell).style.backgroundColor != "lightblue"){
-            document.getElementById(cell).style.backgroundColor = "lightblue";
+        if(document.getElementById(cell).style.backgroundColor != cellColour){
+            document.getElementById(cell).style.backgroundColor = cellColour;
         }
         else{
-            document.getElementById(cell).style.backgroundColor = "white";
+            document.getElementById(cell).style.backgroundColor ="darkgrey";
         }
     }
 
