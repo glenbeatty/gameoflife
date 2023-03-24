@@ -1,3 +1,4 @@
+// comment
 const NUM_ROWS = 20;
 const NUM_COLS = 40;
 const TICK_MS = 250;
