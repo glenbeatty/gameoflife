@@ -7,6 +7,7 @@ let gameRunning = 0;
 let gameStepping = 0;
 let activeCells = [];
 let numActiveCells = 0;
+let iterationCounter = 0;
 
 function tick() {
 
@@ -53,4 +54,8 @@ function tick() {
     activeCells = newActiveCells.slice();
     newActiveCells.length = 0;
     update();
+    iterationCounter++;        
+    document.getElementById("iteration").innerHTML = iterationCounter;
+
+    
 }   

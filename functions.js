@@ -22,13 +22,14 @@ function clear(){
             cellString = cellString.concat(String(i));
             if(j<10){
                 cellString = cellString.concat("0");
-            }
+            }   
             cellString = cellString.concat(String(j));
             document.getElementById(cellString).style.backgroundColor = "darkgrey"; 
             j++;
         }
         i++;
     }
+
 }
 
 function initializeGrid(){
@@ -56,7 +57,10 @@ function initializeGrid(){
 }
 
 function btnRunToggle(){
+    gameStepping = 0;
     if(gameRunning==0){
+        console.log(gameRunning);
+        activeCells.length = 0;
         gameRunning = 1;
         document.getElementById("startBtn").innerHTML = "Pause";
         initializeGrid();
@@ -66,7 +70,7 @@ function btnRunToggle(){
     else{
         gameRunning = 0;
         activeCells.length = 0;
-        document.getElementById("startBtn").innerHTML = "Start";
+        document.getElementById("startBtn").innerHTML = "Run";
         clearInterval(myInterval);
     }
 }
@@ -90,6 +94,9 @@ function btnStep(){
 function btnClear(){
     if(gameRunning == 1){
         btnRunToggle();
+    }
+    if(gameStepping == 1){
+        gameStepping = 0;
     }
     clear();
     activeCells.length = 0; 
@@ -249,6 +256,5 @@ function getCandidates(){
 
         i++;
     }
-
     return candArray;
 }
