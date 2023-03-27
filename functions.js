@@ -1,8 +1,26 @@
-// Comment
-function update(){
-    clear();
-    let i = 0;
+/* update() is responsible for making the html table reflect the current state of the game. No parameters are 
+ * passed, since activeCells array is a global variable. 
+*/
 
+// When the user clicks a cell on the grid, colour that cell appopriately. Only allowed when game is paused.
+function colourCell(cell){
+    if(gameRunning == 0){
+        if(document.getElementById(cell).style.backgroundColor != cellColour){
+            document.getElementById(cell).style.backgroundColor = cellColour;
+        }
+        else{
+            document.getElementById(cell).style.backgroundColor ="darkgrey";
+        }
+    }
+
+}
+
+function update(){
+    
+    clear(); // Clear the board.
+
+    // Iterate over all active cells and colour corrosponding table cell.
+    let i = 0;
     while(i<activeCells.length){
         if((activeCells[i].x>-1)&&(activeCells[i].x<NUM_ROWS)&&(activeCells[i].y>-1)&&(activeCells[i].y<NUM_COLS)){
             document.getElementById(activeCells[i].toString()).style.backgroundColor = cellColour; 
@@ -11,6 +29,10 @@ function update(){
     }
 }
 
+ /* clear() simply sets the board to a blank state. This function is called by the clear button, and also by
+  * functions which update the state of the board. It does this by setting every cell to the default colour of
+  * the board. It does not change the logical representation of which cells are active or inactive.
+ */
 function clear(){
     let i = 0;
     while(i<NUM_ROWS){
@@ -33,6 +55,10 @@ function clear(){
 
 }
 
+/* initializeGrid() generates the logical representation of which cells are alive from the grid's state
+ * in html/css. When the user selects which cells should be active and runs (or steps-through) the program,
+ * this function iterates over the grid and populates the activeCells array with any active cells.
+*/
 function initializeGrid(){
     activeCells.length = 0;
     let i = 0;
@@ -58,8 +84,14 @@ function initializeGrid(){
     }
 }
 
+/* Function btnRunToggle() is called when the run/pause button is pressed. It starts and stops the timer and 
+ * allows the game to run.
+ *
+*/
 function btnRunToggle(){
-    gameStepping = 0;
+    gameStepping = 0; // User is no longer stepping-through, since the run button has been pressed.
+
+    // Code to start the game, to be run if game is paused (including on startup).
     if(gameRunning==0){
         gameRunning = 1;
         document.getElementById("iteration").style.backgroundColor ="green";
@@ -68,6 +100,7 @@ function btnRunToggle(){
         myInterval = setInterval(tick, TICK_MS);
     }
 
+    // Code to pause game, to be run if game is already running. Halts automated execution.
     else{
         gameRunning = 0;
         activeCells.length = 0;
@@ -77,18 +110,25 @@ function btnRunToggle(){
         
     }
 }
-function btnStep(){
-    console.log("btnStep");
 
+/* btnStep() is called when the step-through button is pressed. Advances the game one frame at a time.
+ *
+*/
+function btnStep(){
+
+    // If the game is running, it is first paused.
     if(gameRunning == 1){
         btnRunToggle();
     }
-        
+    
+    // If user hasn't started stepping-through, initialize the array from the board state and then advance one frame.
     if(gameStepping == 0){
         initializeGrid();
         tick();
         gameStepping = 1;
     }
+
+    // If the user has already stepped through, just advance the game by one frame.
     else{
         tick(); 
     }
@@ -96,32 +136,27 @@ function btnStep(){
 
     
 }
+
+// btnClear() pauses the game, clears the board, and resets the iteration counter. 
 function btnClear(){
+
+    // Pause the game if it's running.
     if(gameRunning == 1){
         btnRunToggle();
     }
+    // Stop step-through mode.
     if(gameStepping == 1){
         gameStepping = 0;
     }
-    clear();
-    activeCells.length = 0; 
-    iterationCounter = 0;
+
+    clear(); // Clear the table of any coloured cells. 
+    activeCells.length = 0; // Empty activeCells array.
+    iterationCounter = 0; // Reset iteration counter to 0.
     document.getElementById("iteration").innerHTML = "0";
 
 }
 
-function colourCell(cell){
-    if(gameRunning == 0){
-        if(document.getElementById(cell).style.backgroundColor != cellColour){
-            document.getElementById(cell).style.backgroundColor = cellColour;
-        }
-        else{
-            document.getElementById(cell).style.backgroundColor ="darkgrey";
-        }
-    }
-
-}
-
+// Helper function determins if two cells are adjacent (horizontally, vertically, or diagonally).
 function cellsAdjacent(a, b){
     let xDiff = Math.abs(a.x-b.x);
     let yDiff = Math.abs(a.y-b.y);
@@ -132,28 +167,6 @@ function cellsAdjacent(a, b){
     return 1;
    }
     return 0;
-}
-
-class Cell{
-    x = 0;
-    y = 0;
-    constructor(xVal,yVal){
-        this.x = xVal;
-        this.y = yVal;
-    }   
-
-    toString(){
-       let outputString = "c";
-       if(this.x<10){
-            outputString = outputString.concat(String(0));
-       }
-       outputString = outputString.concat(String(this.x));
-       if(this.y<10){
-            outputString = outputString.concat(String(0));
-         }
-       outputString = outputString.concat(String(this.y));
-       return outputString;
-    }
 }
 
 function cellInArray(c,arr){
