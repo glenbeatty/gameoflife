@@ -2,120 +2,38 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Conway's Game of Life</title>
-    <style>
-        td{
-            width: 1.05em ;
-            height: 1.05em;
-            border: 1px solid black;
-            border-collapse:collapse;
-            background-color:darkgrey;
-            text-align:center;
-            padding:0px;
-        }
-        table{
-            width:auto;
-            border: 1px solid black;
-            border-collapse:collapse;
-            margin-left: auto;
-            margin-right: auto;
-			padding: 0px; 
-            background-color: darkgrey;
-        }
-        #controlBar{
-            width: max-content;
-            margin: auto;
-        }
-        #controlBar li{
-            display: inline;
-            padding-left: 10px;
-            padding-right: 10px;
-        }
-        #controlBar ul{
-            list-style-type: none;
-            margin: 0;
-
-        }
-        #banner{
-            width:100%;
-            background-color:orchid;
-        }
-        #navBar{
-            width:100%;
-            background-color:darkorchid;
-            border:1px black solid;
-            padding-top:5px;
-            padding-bottom: 5px;
-        }
-        #navBar ul{
-            list-style-type: none;
-            margin: 0;
-        }
-        #navBar li{
-            display: inline;
-            padding-left: 20px;
-            padding-right: 20px;
-        }
-        #navBar li a{
-            color:white;
-            font-family:'Courier New', Courier, monospace;
-            font-weight: bold;
-            font-size: larger;
-            text-decoration-line: none;
-        }
-        #navBar li a:hover{
-            color:yellow;
-            text-decoration-line: underline;
-            font-weight:bolder;
-        }
-        #navBar li a:current{
-            color:yellow;
-            text-decoration-line: underline;
-            font-size: larger;
-        }
-
-        #banner h1{
-            color:yellow;
-            font-family:'Courier New', Courier, monospace;
-            margin: 0px;
-            padding: 0;
-            margin-left: 20px;
-            font-size:4em;
-        }
-        #banner h2{
-            color: firebrick;
-            font-family:'Courier New', Courier, monospace;
-            margin: 0px;
-            margin-left: 20px;    
-            font-size:1.5em;
-
-        }
-        #container{
-            width:max-content;
-            margin: auto;
-            border:1px black solid;
-            border-radius: 10px;
-            background-color: orchid;
-            padding-left: 0px;
-            padding-right: 0px;
-            padding-top: 10px;
-            padding-bottom: 10px;
-        }
-    </style>
+    <title>Game of Life</title>
+    <link rel="stylesheet" href="css/style.css">
     <script src="functions.js"></script>
+    <script src="presets.js"></script>
+
 </head>
 <body>
 <div id="container">
 <div id="banner">
     <h1>Game of Life!</h1>
-    <h2>A Cellular Automaton by John Conway</h2>
+    <h2>CSCI 162 Final Project by Jake Mitton and Glen Beatty</h2>
 </div>
 <div id="navBar">
     <ul>
-        <li><a href="">Game</a></li>
-        <li><a href="#">History</a></li>
-        <li><a href="#">Rules</a></li>
-        <li><a href="#">Resources</a></li>
+        <li><a href="index.html">Game</a></li>
+        <li><a href="history.html">History</a></li>
+        <li><a href="rules.html">Rules</a></li>
+        <li><a href="resources.html">Resources</a></li>
+        <li>
+            <div id="presetBox">
+            <p id="presetLabel">Pattern: </p>
+            <form id="presetForm">
+            <select style="width: 100px; border-radius: 5px;" onchange="loadPreset(this.value)">
+                <option value="preset_none" selected>None</option>
+                <option value="preset_glider">Glider</option>
+                <option value="preset_cross">Cross</option>
+                <option value="preset_classDemo">Class Demo</option>
+              </select>
+          </form>
+        </div>
+    </li>
+
 
     </ul>
 </div>
@@ -965,17 +883,18 @@
 <script src="main.js"></script>
 <div id="controlBar">
 <ul>
-    <li><button id="startBtn" onclick="btnRunToggle()" style="margin-top:10px;" >Run</button> </li>
-    <li><button id="stepBtn" onclick="btnStep()" style="margin-top:10px;" >Step Through</button></a></li>
-    <li><button id="stepBtn" onclick="btnClear()" style="margin-top:10px;" >Clear</button></li>
-    <li id="iteration">Iteration #</li>
+    <li><button class="button" id="startBtn" onclick="btnRunToggle()" style="margin-top:10px;" >Run</button> </li>
+    <li><button class="button" id="stepBtn" onclick="btnStep()" style="margin-top:10px;" >Step Through</button></a></li>
+    <li><button class="button" id="stepBtn" onclick="btnClear()" style="margin-top:10px;" >Clear</button></li>
+    <li><button class="button" id="iteration">0</button></li>
 
   </ul>
 </div>
 </div>
+<br>
+<center><button class="button" id="generatePresetBtn" onclick="generatePreset()"> generate preset</button></center>
 
-
-    
+<p id="presetOutput">Preset Output</p>
 </body>
 
 </html>

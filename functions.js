@@ -34,6 +34,7 @@ function clear(){
 }
 
 function initializeGrid(){
+    activeCells.length = 0;
     let i = 0;
     while(i<NUM_ROWS){
         let j = 0;
@@ -60,22 +61,25 @@ function initializeGrid(){
 function btnRunToggle(){
     gameStepping = 0;
     if(gameRunning==0){
-        console.log(gameRunning);
-        activeCells.length = 0;
         gameRunning = 1;
+        document.getElementById("iteration").style.backgroundColor ="green";
         document.getElementById("startBtn").innerHTML = "Pause";
         initializeGrid();
-    myInterval = setInterval(tick, TICK_MS);
+        myInterval = setInterval(tick, TICK_MS);
     }
 
     else{
         gameRunning = 0;
         activeCells.length = 0;
+        document.getElementById("iteration").style.backgroundColor ="grey";
         document.getElementById("startBtn").innerHTML = "Run";
         clearInterval(myInterval);
+        
     }
 }
 function btnStep(){
+    console.log("btnStep");
+
     if(gameRunning == 1){
         btnRunToggle();
     }
@@ -101,6 +105,9 @@ function btnClear(){
     }
     clear();
     activeCells.length = 0; 
+    iterationCounter = 0;
+    document.getElementById("iteration").innerHTML = "0";
+
 }
 
 function colourCell(cell){
@@ -258,4 +265,27 @@ function getCandidates(){
         i++;
     }
     return candArray;
+}
+
+function loadPreset(preset){
+    btnClear();
+
+    activeCells.length = 0;
+    window[preset]();
+    update();
+}
+
+function generatePreset(){
+    initializeGrid();
+    let i = 0;
+    let msg = "";
+    while (i<activeCells.length){
+        msg = msg.concat("activeCells.push(new Cell(");
+        msg = msg.concat(activeCells[i].x);
+        msg = msg.concat(",");
+        msg = msg.concat(activeCells[i].y);
+        msg = msg.concat("));<br />");
+        i++;
+    }
+    document.getElementById("presetOutput").innerHTML = msg;
 }
