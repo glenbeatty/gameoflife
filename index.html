@@ -1,43 +1,69 @@
-<!--Comment-->
+<!--
+    Index.html is the home page which contains our Game of Life web application.
+-->
+
+<!-- Markup to maximimize compatability-->
 <!DOCTYPE html>
-<html>
-<head>
-    <title>Game of Life</title>
-    <link rel="stylesheet" href="css/style.css">
-    <script src="functions.js"></script>
-    <script src="presets.js"></script>
+<html lang="en">
+    <head>
+        
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<!-- End markup -->
 
-</head>
+<!-- Title which appears in browser. -->
+        <title>Game of Life</title> 
+
+<!-- style.css contains all css for website.-->
+        <link rel="stylesheet" href="css/style.css"> 
+
+<!-- External JavaScript files contain functions and implementation of pre-sets respectively..-->
+        <script src="functions.js"></script> 
+        <script src="presets.js"></script>
+    </head>
 <body>
+
+<!--Master container container houses all design elements on page.-->
 <div id="container">
-<div id="banner">
-    <h1>Game of Life!</h1>
-    <h2>CSCI 162 Final Project by Jake Mitton and Glen Beatty</h2>
+  
+    <!--Banner contains title and subtitle elements.-->
+    <div id="banner">
+        <h1>Game of Life!</h1>
+        <h2>CSCI 162 Final Project by Jake Mitton and Glen Beatty</h2>
+    </div>
+
+    <!--navBar houses all navigation elements (dark purple background).-->
+    <div id="navBar">
+        <ul>
+            <li><a href="index.html">Game</a></li>
+            <li><a href="history.html">History</a></li>
+            <li><a href="rules.html">Rules</a></li>
+            <li><a href="resources.html">Resources</a></li>
+            <li>
+                <!-- presetBox houses preset-selector form.-->
+                <div id="presetBox">
+                <p id="presetLabel">Pattern: </p>
+                <!--PresetForm allows users to select from available presets.-->
+                    <form id="presetForm">
+                    <!--Options in this select box corrospond to pre-defined patterns. 
+                    Option value MUST have the same name as a function defined in presets.js-->
+                    <select style="width: 100px; border-radius: 5px;" onchange="loadPreset(this.value)">
+                        <option value="preset_none" selected>None</option>
+                        <option value="preset_glider">Glider</option>
+                        <option value="preset_cross">Cross</option>
+                        <option value="preset_classDemo">Class Demo</option>
+                    </select>
+                </form>
+             </div>
+            </li>
+
+        </ul>
 </div>
-<div id="navBar">
-    <ul>
-        <li><a href="index.html">Game</a></li>
-        <li><a href="history.html">History</a></li>
-        <li><a href="rules.html">Rules</a></li>
-        <li><a href="resources.html">Resources</a></li>
-        <li>
-            <div id="presetBox">
-            <p id="presetLabel">Pattern: </p>
-            <form id="presetForm">
-            <select style="width: 100px; border-radius: 5px;" onchange="loadPreset(this.value)">
-                <option value="preset_none" selected>None</option>
-                <option value="preset_glider">Glider</option>
-                <option value="preset_cross">Cross</option>
-                <option value="preset_classDemo">Class Demo</option>
-              </select>
-          </form>
-        </div>
-    </li>
 
-
-    </ul>
-</div>
-
+<!--Master table which houses all cells in grid. When clicked, function colourCell is called with
+the table cell's id passed as an argument. The first two digits in each cell id represents
+the row number, and the second two represent the column number.-->
 <table>
     <tr>
         <td id = "c0000" onclick="colourCell(this.id)"> </td>
@@ -880,20 +906,34 @@
         <td id = "c1939" onclick="colourCell(this.id)"> </td>
         </tr>
 </table>
+
+<!--Main.js contains the procedural JavaScript code, while functions.js and presets.js contain 
+functions which are called by main.js as needed.-->
 <script src="main.js"></script>
+
+<!--Bottom control bar houses control elements for application and iteration counter. Controls include Run/pause,
+Step Through, and Clear-->
 <div id="controlBar">
 <ul>
     <li><button class="button" id="startBtn" onclick="btnRunToggle()" style="margin-top:10px;" >Run</button> </li>
-    <li><button class="button" id="stepBtn" onclick="btnStep()" style="margin-top:10px;" >Step Through</button></a></li>
-    <li><button class="button" id="stepBtn" onclick="btnClear()" style="margin-top:10px;" >Clear</button></li>
+    <li><button class="button" id="stepBtn" onclick="btnStep()" style="margin-top:10px;" >Step Through</button></li>
+    <li><button class="button" id="clearBtn" onclick="btnClear()" style="margin-top:10px;" >Clear</button></li>
     <li><button class="button" id="iteration">0</button></li>
 
   </ul>
 </div>
 </div>
+<!--End of code for end-product.-->
+
+<!--Beginning of code used only for development. The following is used to generate code which can then be copied
+and pasted into an appropriately named function in presets.js. This is just a convenient way for the developers 
+to generate all desired presets. Will be removed before submission and class demo. -->
 <br>
+
+<!-- Click generatePresetBtn once desired pattern has been completed in the grid. Preset code will be generated below.-->
 <center><button class="button" id="generatePresetBtn" onclick="generatePreset()"> generate preset</button></center>
 
+<!-- Paragraph element stores generated preset code. Copy and paste into appropriately named function in presets.js-->
 <p id="presetOutput">Preset Output</p>
 </body>
 

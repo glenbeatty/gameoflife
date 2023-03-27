@@ -37,6 +37,8 @@ table{
     height: max-content;
     background-color:darkorchid;
     border:1px black solid;
+    border-right: none;
+    border-left: none;
     padding-top:5px;
     padding-bottom: 5px;
     padding-left:5px;
