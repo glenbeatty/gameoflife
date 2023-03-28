@@ -160,15 +160,20 @@ function btnClear(){
 function cellsAdjacent(a, b){
     let xDiff = Math.abs(a.x-b.x);
     let yDiff = Math.abs(a.y-b.y);
+
+    // If xDiff and yDiff both equal zero, the two cells are identical.
    if((xDiff == 0)&&(yDiff ==0)){
     return 0;
    }
-   if((xDiff<2)&&yDiff<2){
+   // If they are not identical cells and have a yDiff and xDiff of (1,1), (1,0), and (0,1), the cells are adjacent.
+   if((xDiff<2)&&(yDiff<2)){
     return 1;
    }
+   // In all other cases, the cells are not adjacent.
     return 0;
 }
 
+// Helper function to determine if a cell already exists in our array.
 function cellInArray(c,arr){
     let i = 0;
     while(i<arr.length){
@@ -208,16 +213,16 @@ function getCandidates(){
         var leftValid = 0;
         var bottomValid = 0;
         var rightValid = 0;
-        if(c.x>-2){
+        if(c.x>-5){
             topValid = 1;
         }
-        if(c.x<(NUM_ROWS+1)){
+        if(c.x<(NUM_ROWS+4)){
             bottomValid = 1;
         }
-        if(c.y>-2){
+        if(c.y>-5){
             leftValid = 1;
         }
-        if(c.x<(NUM_COLS+1)){
+        if(c.x<(NUM_COLS+4)){
             rightValid = 1;
         }
 
@@ -278,6 +283,76 @@ function getCandidates(){
         i++;
     }
     return candArray;
+}
+
+function pruneCells(){
+    let topRowCell = 0;
+    let bottomRowCell = 0;
+    let leftColCell = 0;
+    let rightColCell = 0;
+    
+    let i = 0;
+    while(i<activeCells.length){
+        if(activeCells[i].x == 0){
+            topRowCell = 1;
+        }
+        if(activeCells[i].x == NUM_ROWS - 1){
+            bottomRowCell = 1;
+        }
+        if(activeCells[i].y == 0){
+            leftColCell = 1;
+        }
+        if(activeCells[i].y == NUM_COLS - 1){
+            rightColCell = 1;
+        }
+        i++;
+
+    }
+
+    i = 0;
+    if(topRowCell == 0){
+        while(i<activeCells.length){
+            if(activeCells[i].x<0){
+                activeCells.splice(i,1);
+                console.log(iterationCounter + ": Splice Condition top.")
+            }
+            i++;
+        }
+    }
+
+    i = 0;
+    if(bottomRowCell == 0){
+        while(i<activeCells.length){
+            if(activeCells[i].x>(NUM_ROWS-1)){
+                activeCells.splice(i,1);
+                console.log(iterationCounter + ": Splice Condition bottom.")
+            }
+            i++;
+        }
+    }
+
+    i = 0;
+    if(leftColCell == 0){
+        while(i<activeCells.length){
+            if(activeCells[i].y<0){
+                activeCells.splice(i,1);
+                console.log(iterationCounter + ": Splice Condition left.")
+
+            }
+            i++;
+        }
+    }
+
+    i = 0;
+    if(rightColCell == 0){
+        while(i<activeCells.length){
+            if(activeCells[i].y>(NUM_COLS-1)){
+                activeCells.splice(i,1);
+                console.log(iterationCounter + ": Splice Condition right.")
+            }
+            i++;
+        }
+    }
 }
 
 function loadPreset(preset){

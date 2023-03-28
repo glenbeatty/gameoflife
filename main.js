@@ -2,7 +2,7 @@
 
 const NUM_ROWS = 20; // Number of rows (not maximum index). Must match number in table.
 const NUM_COLS = 40; // Number of columns (not maximum index). Must match number in table.
-const TICK_MS = 250; // Time between updates when game running in milliseconds.
+const TICK_MS = 150; // Time between updates when game running in milliseconds.
 const cellColour = "yellow"; //Colour of active cells.
 
 // Necessary global variables. None should be changed here.
@@ -106,6 +106,7 @@ function tick() {
     activeCells.length = 0; // clear activeCells array, since we've generated the next frame.
     activeCells = newActiveCells.slice(); // Update activeCells to contain the array of newActiveCells we generated.
     newActiveCells.length = 0; // Clear the newActiveCells array so it's empty for the next iteration.
+    pruneCells();
     update(); // Update the grid with the next frame, now that we've generated it.
 
     // Increment the iteration counter and set the html element to the new value, so it's reflected to the user. 
