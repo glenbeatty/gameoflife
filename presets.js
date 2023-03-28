@@ -19,7 +19,7 @@ function preset_none(){
 
 }
 
-function preset_classDemo(){
+function preset_explosion(){
     activeCells.push(new Cell(7,16));
     activeCells.push(new Cell(8,17));
     activeCells.push(new Cell(9,17));

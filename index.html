@@ -50,8 +50,8 @@
                     Option value MUST have the same name as a function defined in presets.js-->
                     <select style="width: 180px; border-radius: 5px;" onchange="loadPreset(this.value)">
                         <option value="preset_none" selected>None</option>
-                        <option value="preset_classDemo">Class Demo</option>
                         <option value="preset_cross">Cross</option>
+                        <option value="preset_explosion">Explosion</option>
                         <option value="preset_glider">Glider</option>
                         <option value="preset_gosperGliderGun">Gosper Glider Gun</option>
                         <option value="preset_HWSS">Heavy-Weight Space Ship</option>
@@ -930,16 +930,7 @@ Step Through, and Clear-->
 </div>
 <!--End of code for end-product.-->
 
-<!--Beginning of code used only for development. The following is used to generate code which can then be copied
-and pasted into an appropriately named function in presets.js. This is just a convenient way for the developers 
-to generate all desired presets. Will be removed before submission and class demo. -->
-<br>
 
-<!-- Click generatePresetBtn once desired pattern has been completed in the grid. Preset code will be generated below.-->
-<center><button class="button" id="generatePresetBtn" onclick="generatePreset()"> generate preset</button></center>
-
-<!-- Paragraph element stores generated preset code. Copy and paste into appropriately named function in presets.js-->
-<p id="presetOutput">Preset Output</p>
 </body>
 
 </html>

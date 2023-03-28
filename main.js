@@ -2,7 +2,7 @@
 
 const NUM_ROWS = 20; // Number of rows (not maximum index). Must match number in table.
 const NUM_COLS = 40; // Number of columns (not maximum index). Must match number in table.
-const TICK_MS = 150; // Time between updates when game running in milliseconds.
+const TICK_MS = 500; // Time between updates when game running in milliseconds.
 const cellColour = "yellow"; //Colour of active cells.
 
 // Necessary global variables. None should be changed here.

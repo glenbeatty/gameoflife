@@ -257,8 +257,7 @@ function getCandidates(){
                 c1 = new Cell((c.x-1),(c.y-1));
                 candArray.push(c1);
             }
-        }
-
+        }   
 
         if(topValid == 1){
             if(duplicateCandidate(candArray,c.x-1,c.y)==0){
@@ -414,19 +413,4 @@ function loadPreset(preset){
 
     // Update the board state with the activeCells array which has been generated from a preset function.
     update();
-}
-
-function generatePreset(){
-    initializeGrid();
-    let i = 0;
-    let msg = "";
-    while (i<activeCells.length){
-        msg = msg.concat("activeCells.push(new Cell(");
-        msg = msg.concat(activeCells[i].x);
-        msg = msg.concat(",");
-        msg = msg.concat(activeCells[i].y);
-        msg = msg.concat("));<br />");
-        i++;
-    }
-    document.getElementById("presetOutput").innerHTML = msg;
 }
