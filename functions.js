@@ -185,6 +185,10 @@ function cellInArray(c,arr){
     return 0;
 }
 
+/* Helper function to determine if a candidate cell already exists in the candidate cell array.
+ * It is necessary for candidateArray to contain only unique cells, so this function is called 
+ * to determine if a cell already exists in our array. Returns 1 if cell is in array and 0 otherwise.
+*/
 function duplicateCandidate(candArr,x,y){
     let i = 0;
     while (i<candArr.length){
@@ -203,16 +207,34 @@ function duplicateCandidate(candArr,x,y){
     return 0;
 }
 
+/* getCandidates() generates and returns the completed candidates array, which contains any
+ * cell that is adjacent to at least one active cell and could itself become active. This 
+ * candidates array is then used in main.js to determine which inactive cells become activated.
+*/
 function getCandidates(){
 
+    // Create empty candidates array:
     let candArray = [];
+
+    // Iterate over array of already active cells.
     let i = 0;
     while(i<activeCells.length){
+        // Cell c is created and is equal to the current active cell.
         c = new Cell(activeCells[i].x,activeCells[i].y);
+
+        /* Boolean values. A true value for each side means a cell generated on that side.
+         * without going off the edge of our logical grid. The logical grid is 4 cells larger on each side 
+         * than the table which will be rendered, so that cell groups near the edge of the grid behave as 
+         * if the grid were infinite. 
+        */
         var topValid = 0;
         var leftValid = 0;
         var bottomValid = 0;
         var rightValid = 0;
+
+        /* If the current cell is +- 4 cells of our display grid, it is possible that a new cell should 
+         * be generated, so we set the according variable to 1 accordingly. 
+        */
         if(c.x>-5){
             topValid = 1;
         }
@@ -226,6 +248,10 @@ function getCandidates(){
             rightValid = 1;
         }
 
+        /* Each of the following 8 condiitons represents an adjacent cell to the active cell which 
+         * could become active. If the candidate cell would be within the bounds of our logical grid,
+         * it is added to the array of candidate cells.
+        */
         if((topValid == 1)&&(leftValid == 1)){
             if(duplicateCandidate(candArray,c.x-1,c.y-1)==0){
                 c1 = new Cell((c.x-1),(c.y-1));
@@ -282,16 +308,33 @@ function getCandidates(){
 
         i++;
     }
+
+    // Return the array we just populated. 
     return candArray;
 }
 
+/* pruneCells() is called with each iteration and is responsible for clearing any stable clusters
+ * of cells which exist in the buffer between the edges of the visual grid and the edge of our logical grid. 
+ * Due to the game rules, if the grid becomes finite in any dimension, stable clusters can develop on the edge
+ * of the grid. These stable clusters can then influence the visible grid when more cells colide with them,
+ * which can result in improper behaviour exibited in the application.
+ * 
+ * pruneCells() deletes any cell which is outside the bounds of our visual grid and is not connected to any visible
+ * cells. This allows our application to avoid the appearance of any improper behaviour.
+*/
 function pruneCells(){
+
+    /* Boolean values represent whether there are any active cells in the edge columns and rows. If there are
+     * no cells occupying the final row or column on either side, we can safely delete any out-of-bounds cells without
+    * affecting the visible behaviour of the program. 
+    */
     let topRowCell = 0;
     let bottomRowCell = 0;
     let leftColCell = 0;
     let rightColCell = 0;
-    
     let i = 0;
+
+    // Iterate over all active cells to see if any are on the edges. If any are, set the appopriate variable to 1.
     while(i<activeCells.length){
         if(activeCells[i].x == 0){
             topRowCell = 1;
@@ -309,12 +352,15 @@ function pruneCells(){
 
     }
 
+    /* If there are no cells on any of the 4 edge rows or columns, iterate over all active cells and delete 
+     * any that are outside of the visible grid. 
+    */
     i = 0;
     if(topRowCell == 0){
         while(i<activeCells.length){
             if(activeCells[i].x<0){
+                // If a cell is outside of the active bounds, remove it from the array using the splice method.
                 activeCells.splice(i,1);
-                console.log(iterationCounter + ": Splice Condition top.")
             }
             i++;
         }
@@ -325,7 +371,6 @@ function pruneCells(){
         while(i<activeCells.length){
             if(activeCells[i].x>(NUM_ROWS-1)){
                 activeCells.splice(i,1);
-                console.log(iterationCounter + ": Splice Condition bottom.")
             }
             i++;
         }
@@ -336,7 +381,6 @@ function pruneCells(){
         while(i<activeCells.length){
             if(activeCells[i].y<0){
                 activeCells.splice(i,1);
-                console.log(iterationCounter + ": Splice Condition left.")
 
             }
             i++;
@@ -348,18 +392,27 @@ function pruneCells(){
         while(i<activeCells.length){
             if(activeCells[i].y>(NUM_COLS-1)){
                 activeCells.splice(i,1);
-                console.log(iterationCounter + ": Splice Condition right.")
             }
             i++;
         }
     }
 }
 
+/* loadPreset() is called by a select box within presetForm in index.html. This function is used to help
+ * generate a grid state from pre-defined presets that we have created. It accomplishes this by accepting
+ * the preset name as a function argument, clearing the board, and then calling a preset function. It 
+ * calls the preset function using the JavaScript window object, which allows us to call a function based
+ * on a provided string. The string parameter provided is idential to a preset function in presets.js, so
+ * a preset function with the same name as the provided argument is called with no arguments.
+*/
 function loadPreset(preset){
     btnClear();
-
     activeCells.length = 0;
+
+    // Call the function with the same name as the supplied string argument with no function arguments.
     window[preset]();
+
+    // Update the board state with the activeCells array which has been generated from a preset function.
     update();
 }
 
