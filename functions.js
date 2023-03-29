@@ -1,7 +1,3 @@
-/* update() is responsible for making the html table reflect the current state of the game. No parameters are 
- * passed, since activeCells array is a global variable. 
-*/
-
 // When the user clicks a cell on the grid, colour that cell appopriately. Only allowed when game is paused.
 function colourCell(cell){
     if(gameRunning == 0){
@@ -15,6 +11,9 @@ function colourCell(cell){
 
 }
 
+/* update() is responsible for making the html table reflect the current state of the game. No parameters are 
+ * passed, since activeCells array is a global variable. 
+*/
 function update(){
     
     clear(); // Clear the board.
@@ -107,7 +106,6 @@ function btnRunToggle(){
         document.getElementById("iteration").style.backgroundColor ="grey";
         document.getElementById("startBtn").innerHTML = "Run";
         clearInterval(myInterval);
-        
     }
 }
 
@@ -132,9 +130,6 @@ function btnStep(){
     else{
         tick(); 
     }
-    
-
-    
 }
 
 // btnClear() pauses the game, clears the board, and resets the iteration counter. 
@@ -207,8 +202,8 @@ function duplicateCandidate(candArr,x,y){
     return 0;
 }
 
-/* getCandidates() generates and returns the completed candidates array, which contains any
- * cell that is adjacent to at least one active cell and could itself become active. This 
+/* getCandidates() generates and returns the completed candidates array, which contains any inactive
+ * cell that is adjacent to at least one active cell. This candidate cell could itself become active. This 
  * candidates array is then used in main.js to determine which inactive cells become activated.
 */
 function getCandidates(){
