@@ -1,0 +1,162 @@
+<!--
+    Index.html is the home page which contains our Game of Life web application.
+-->
+
+<!-- Markup to maximimize compatability-->
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<!-- End markup -->
+
+<!-- Title which appears in browser. -->
+        <title>Game of Life</title> 
+
+<!-- Favicon links (mini browser icon)-->        
+        <link rel="apple-touch-icon" sizes="180x180" href="favicon/apple-touch-icon.png">
+        <link rel="icon" type="image/png" sizes="32x32" href="favicon/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="favicon/favicon-16x16.png">
+        <link rel="manifest" href="favicon/site.webmanifest">
+
+<!-- style.css contains all css for website.-->
+        <link rel="stylesheet" href="css/style.css"> 
+
+        <style>
+            p{
+                word-wrap:break-word;
+                margin-left: 0px;
+                margin-right: 0px;
+                margin-top: 4px;
+                font-size: 1.1em;
+            }
+
+            #textWrapper{
+                width: auto;
+                padding: 10px;
+                background-color: white;
+                border: 1px darkgrey solid;
+                border-radius: 0 0 10px 10px;
+                margin: 0px;
+            }
+
+            h2 {
+                color: purple;
+                font-family:'Courier New', Courier, monospace;
+                margin: 0px;
+                font-size: 3em;
+            }
+
+            h3 {
+                color: purple;
+                font-family:'Courier New', Courier, monospace;
+                margin: 0px;
+                font-size: 1.8em;
+            }
+
+            h4{
+                color: purple;
+                font-family:'Courier New', Courier, monospace;
+                margin: 0px;
+                font-size: 1.4em;
+            }
+
+            #rulesTable{
+                border: none;
+                width: 100%;
+                background-color: white;
+            }
+            
+            #rulesTable td{
+                border: 1px black solid;
+                background-color: white;
+                text-align: left;
+                padding: 10px;
+                
+            }
+            .rulesImg{
+                width: 100%;
+                height: auto;
+            }
+
+        </style>
+
+
+    </head>
+<body>
+
+<!--Master container container houses all design elements on page.-->
+<div id="container" style="padding-bottom:0px;">
+  
+<!--Banner contains title and subtitle elements.-->
+<div id="banner">
+    <a id="title" href="index.html">The Game of Life!</a>
+    <h2>A Cellular Automaton by John Conway</h2>
+</div>
+
+
+<!--navBar houses all navigation elements (dark purple background).-->
+<div id="navBar">
+    <ul>
+        <li><a href="index.html">Game</a></li>
+        <li><a href="rules.html">Rules</a></li>
+        <li><a href="project.html">Project</a></li>
+        <li><a href="resources.html">Resources</a></li>
+    </ul>
+</div>
+
+<div id="textWrapper">
+    <h2>Rules</h2>
+    <table id="rulesTable">
+        <tr>
+            <td style="width: 70%;">
+                <h4>The Game of Life is played on an infinite, two-dimensional grid.</h2>
+            </td>
+            <td style="width: 30%;"><img class="rulesImg" src="img/1_empty_grid.jpg"></td>
+        </tr>
+        <tr>
+            <td>
+                <h4>To begin with, each cell is either alive or dead.</h2>
+            </td>
+            <td><img class="rulesImg" src="img/2_alive_or_dead.jpg"></td>
+        </tr>
+        <tr>
+            <td>
+                <h4>Once the grid has been set up, three rules are applied to it repeatedly.</h2>
+            </td>
+            <td><img class="rulesImg" src="img/3_three_rules.jpg"></td>
+        </tr>
+        <tr>
+            <td>
+                <h4>1: Any living cell with 2 or 3 adjacent living neighbours stays alive.</h2>
+            </td>
+            <td><img class="rulesImg" src="img/4_stays_alive.jpg"></td>
+        </tr>
+        <tr>
+            <td>
+                <h4>2: Any living cell with fewer than 2 or more than 3 adjacent living neighbours dies.</h2>
+            </td>
+            <td><img class="rulesImg" src="img/5_cell_dies.jpg"></td>
+        </tr>
+        <tr>
+            <td>
+                <h4>3: Any dead cell with exactly 3 adjacent living neighbours comes to life.</h2>
+            </td>
+            <td><img class="rulesImg" src="img/6_comes_to_life.jpg"></td>
+        </tr>
+        <tr>
+            <td>
+                <h4>After these three rules have been applied to all cells in the grid, an iteration is complete.<br><br>
+                    The game will now perform the same operations on this new configuration of cells.
+                </h2>
+            </td>
+            <td><img class="rulesImg" src="img/7_iteration_complete.jpg"></td>
+        </tr>
+    </table>
+</div>
+</div>
+</body>
+
+</html>

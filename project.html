@@ -1,0 +1,216 @@
+<!--
+    Index.html is the home page which contains our Game of Life web application.
+-->
+
+<!-- Markup to maximimize compatability-->
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<!-- End markup -->
+
+<!-- Title which appears in browser. -->
+        <title>Game of Life</title> 
+
+<!-- Favicon links (mini browser icon)-->        
+        <link rel="apple-touch-icon" sizes="180x180" href="favicon/apple-touch-icon.png">
+        <link rel="icon" type="image/png" sizes="32x32" href="favicon/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="favicon/favicon-16x16.png">
+        <link rel="manifest" href="favicon/site.webmanifest">
+
+<!-- style.css contains all css for website.-->
+        <link rel="stylesheet" href="css/style.css"> 
+
+        <style>
+            p{
+                word-wrap:break-word;
+                margin-left: 0px;
+                margin-right: 0px;
+                margin-top: 4px;
+                font-size: 1.1em;
+            }
+
+            #textWrapper{
+                width: auto;
+                padding: 10px;
+                background-color: white;
+                border: 1px darkgrey solid;
+                border-radius: 0 0 10px 10px;
+                margin: 0px;
+            }
+
+            h2 {
+                color: purple;
+                font-family:'Courier New', Courier, monospace;
+                margin: 0px;
+                font-size: 3em;
+            }
+
+            h3 {
+                color: purple;
+                font-family:'Courier New', Courier, monospace;
+                margin: 0px;
+                font-size: 1.8em;
+            }
+
+            h4{
+                color: purple;
+                font-family:'Courier New', Courier, monospace;
+                margin: 0px;
+                font-size: 1.4em;
+            }
+        </style>
+
+
+    </head>
+<body>
+
+<!--Master container container houses all design elements on page.-->
+<div id="container" style="padding-bottom:0px;">
+  
+    <!--Banner contains title and subtitle elements.-->
+    <div id="banner">
+        <a id="title" href="index.html">The Game of Life!</a>
+        <h2>A Cellular Automaton by John Conway</h2>
+    </div>
+
+
+    <!--navBar houses all navigation elements (dark purple background).-->
+    <div id="navBar">
+        <ul>
+            <li><a href="index.html">Game</a></li>
+            <li><a href="rules.html">Rules</a></li>
+            <li><a href="project.html">Project</a></li>
+            <li><a href="resources.html">Resources</a></li>
+        </ul>
+    </div>
+    
+<div id="textWrapper">
+    <h2>Project</h1>
+<p>
+This website was created by Vancouver Island University (VIU) students Jake Mitton and Glen Beatty as their final project
+for CSCI 162: Topics in Computer Science. Through our studies in CSCI 162, we developed an interest in cellular automata and discovered
+Conway's Game of Life.
+</p>
+<p>
+We successfully developed two fully functioning implementations of the Game of Life.
+We made our first application in C++, which we were both already familiar with. Though we
+only intended to prototype our algorithm in C++, we ultimately developed this application into a
+complete version of the Game of Life. Having successfully implemented the Game of Life in
+C++, we began working on a web-based version, using HTML, CSS, and JavaScript. Unlike the
+C++ programming language, with which we were both familiar, neither of us had experience
+creating applications in JavaScript.
+</p>
+<p>
+Though we knew our lack of experience in developing web-based applications would
+make this phase of the project challenging, we felt that a web-based implementation would have
+two major benefits as compared to our C++ command line application. The first is that a web-
+based application allows for a complex and flexible graphical user interface (GUI). In our web-
+based Game of Life application, the user’s visual experience of the game and method of
+interaction was enhanced relative to our console-based application. Secondly, web-based
+applications are ideal for accessibility and sharing our work with others. It is much easier for
+users to access an application hosted online as compared to one created in a compiled language
+like C++. For users without programming experience, experiencing our C++ application would
+be difficult if not impossible.
+</p>
+<p>
+While our C++ application lacks some of the features possible in a web-based
+environment, it is still a fully-fledged implementation of the Game of Life. While challenging,
+the development of our C++ application was an excellent learning opportunity for our team. In
+some ways, creating our C++ application in a less-permissive and more primitive language than
+JavaScript was a more challenging endeavor than our web-based application. We are very
+satisfied with the end-result of this component of our project.
+</p>
+<h3>
+C++ Application
+</h3>
+<p>
+The most challenging part of the C++ program was implementing an infinite game board.
+We did this by writing a function to detect when a tile on the edge of the board was activated.
+When this function detected an active edge tile it would trigger another function that expands the
+board by 2 rows and 2 columns then copies the current board into the center of the new board.
+We tested the C++ program by running it for over 5000 cycles and expanding the board over 100
+times in a single round. Having tested our Game of Life algorithm in C++, we began developing
+our web application.
+</p>
+<h3>
+JavaScript Web Application
+</h3>
+<p>
+We hosted our Game of Life web application on GitHub, which allows users to easily
+access it through their web browser at https://bit.ly/viu_gol. Since JavaScript is an interpreted
+language, which is supported by all modern browsers, users unfamiliar with programming can
+also try the Game of Life. Users select their desired starting configuration by either clicking on
+grid cells, selecting from one of eight pre-set patterns, or both. Once satisfied by their
+arrangement of cells, users then begin the game by pressing either the Run or Step Through
+button. 
+</p>
+<p>
+Once the user presses the Run button, the game will continue to iterate at a fixed interval of
+one frame per 150 milliseconds until they press the Pause button. If the user selects the Step
+Through button, the game remains paused and advances by one iteration at a time. By using the
+Step Through feature, the user can advance the game at whatever pace they desire. This feature
+also allows users to carefully examine application’s behaviour, predict future changes, and easily
+verify their understanding of the rules. The user can pause execution at any time, change the
+configuration of living and dead cells, and resume iteration by clicking the Run or Step Through
+button.</p>
+<h4>Design and Structure</h4>
+<p>
+As are all modern websites, we wrote our web application and the website which houses
+it in HTML (HyperText Markup Language) and CSS (Cascading Style Sheets). Our web
+application is housed in index.html, which is the first page loaded when visiting any website. The
+visible grid, upon which the Game of Life is played, consists of a HTML table with 40 vertical
+columns and 20 horizontal rows. The HTML code for this application was generated using a
+separate C++ program, copied, and then pasted into index.html. Each of the 800 cells in the table
+has a unique, 5-character id attribute. Each cell’s id consists of the letter “c”, followed by four
+numerical digits. The first two digits are the cell’s row number and the last two are the cell’s
+column number, starting at 00. For example, the id “c0009” describes the cell occupying the
+tenth column on the first row.</p>
+<h4>
+Logic and Execution
+</h4>
+<p>
+The sequential, numerical id attributes in our html are essential to the execution of our
+web application. In addition to an id attribute, each table cell has the same onclick attribute,
+which calls the colourCell function and passes the cells id as an argument. The colourCell
+function then toggles the colour of whichever cell made the function call between grey (dead)
+and yellow (alive). This is accomplished by changing the background colour of the cell using
+JavaScript. By colouring the grid in this fashion, the user customizes the starting configuration of
+their grid. In addition to customizing the grid configuration manually, the user can also select
+one of 8 pre-defined patterns, each of which demonstrates an interesting, noteworthy, or
+informative starting configuration in the Game of Life.
+</p>
+<p>
+Once the initial configuration has been determined, and either the Run or Step Through
+button pressed, the game starts iterating and generating subsequent grid states. An array of Cell
+objects is generated, with each Cell object corresponding to a live cell in the HTML table. To
+minimize resource usage, our algorithm does not require Cell objects to be created for dead cells.
+It is assumed that any table cell without a corresponding Cell object is dead at a given time.
+Once our array of Cell objects has been generated, two comparison loops are performed
+to determine the state of the next frame. The first iterates over every live cell to see how many
+other live cells are adjacent to it in one of the eight eligible positions. If there are 2 or 3 adjacent
+cells, that cell remains alive and is placed in a Cell array which represents the next frame. After
+iterating over the array of live cells, an array of candidate cells is generated. A candidate cell is
+any cell that is adjacent to at least one living cell, since such a cell could itself become alive.
+After this unique array of candidate cells has been generated, it is iterated over in the same way
+as the array containing live cells. In this comparison loop however, a cell only becomes alive if it
+is adjacent to exactly 3 living cells. The reason for performing two separate comparison loops is
+that, because the rules are different for live and candidate cells, we would have to track each
+cell's state (alive or dead) if we performed only one loop.
+</p>
+<p>
+Once the array of Cells which represents the grid state of the next iteration has been
+generated, our application then uses JavaScript to style the appropriate cells in our HTML table.
+The table is first reset to the initial state, with no living cells, and then any live cells in the next-
+iteration array are coloured yellow. Having done this, the visible game now represents the proper
+grid state after the iteration has been performed. The next-iteration array becomes the current-
+iteration array, the next-iteration array is cleared, and the game is ready for the next iteration.
+</p>
+</div>
+</div>
+</body>
+
+</html>

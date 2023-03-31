@@ -1,0 +1,22 @@
+p{
+    word-wrap:break-word;
+    margin-left: 0px;
+    margin-right: 0px;
+    margin-top: 4px;
+    font-size: 1.1em;
+}
+
+#textWrapper{
+    width: auto;
+    padding: 10px;
+    background-color: white;
+    border: 1px darkgrey solid;
+    border-radius: 0 0 10px 10px;
+    margin: 0px;
+}
+
+.title{
+    color: purple;
+    font-family:'Courier New', Courier, monospace;
+    margin: 0px;
+}

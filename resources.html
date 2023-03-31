@@ -1,0 +1,134 @@
+<!--
+    Index.html is the home page which contains our Game of Life web application.
+-->
+
+<!-- Markup to maximimize compatability-->
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<!-- End markup -->
+
+<!-- Title which appears in browser. -->
+        <title>Game of Life</title> 
+
+<!-- Favicon links (mini browser icon)-->        
+        <link rel="apple-touch-icon" sizes="180x180" href="favicon/apple-touch-icon.png">
+        <link rel="icon" type="image/png" sizes="32x32" href="favicon/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="favicon/favicon-16x16.png">
+        <link rel="manifest" href="favicon/site.webmanifest">
+
+<!-- style.css contains all css for website.-->
+        <link rel="stylesheet" href="css/style.css"> 
+
+        <style>
+            p{
+                word-wrap:break-word;
+                margin-left: 0px;
+                margin-right: 0px;
+                margin-top: 4px;
+                font-size: 1.1em;
+            }
+
+            #textWrapper{
+                width: auto;
+                padding: 10px;
+                background-color: white;
+                border: 1px darkgrey solid;
+                border-radius: 0 0 10px 10px;
+                margin: 0px;
+            }
+
+            h2 {
+                color: purple;
+                font-family:'Courier New', Courier, monospace;
+                margin: 0px;
+                font-size: 3em;
+            }
+
+            h3 {
+                color: purple;
+                font-family:'Courier New', Courier, monospace;
+                margin: 0px;
+                font-size: 1.8em;
+            }
+
+            h4{
+                color: purple;
+                font-family:'Courier New', Courier, monospace;
+                margin: 0px;
+                font-size: 1.4em;
+            }
+            
+            .resourceList{
+                margin-top: 14px;
+                margin-bottom: 14px;
+                font-size: 1.2em;
+            }
+        </style>
+
+
+    </head>
+<body>
+
+<!--Master container container houses all design elements on page.-->
+<div id="container" style="padding-bottom:0px;">
+  
+<!--Banner contains title and subtitle elements.-->
+<div id="banner">
+    <a id="title" href="index.html">The Game of Life!</a>
+    <h2>A Cellular Automaton by John Conway</h2>
+</div>
+
+
+<!--navBar houses all navigation elements (dark purple background).-->
+<div id="navBar">
+    <ul id="resourceList">
+        <li><a href="index.html">Game</a></li>
+        <li><a href="rules.html">Rules</a></li>
+        <li><a href="project.html">Project</a></li>
+        <li><a href="resources.html">Resources</a></li>
+    </ul>
+</div>
+
+<div id="textWrapper">
+    <h2>Resources</h1>
+    <p style="font-size: 1.2em;">Conway's <em>Game of Life</em> has elicited significant interest, both within and outside of 
+        academic circles. As a result, there are many articles, videos, applications, and other resources
+        about the topic. Here are a list of resources we found helpful in understanding the 
+        <em>Game of Life </em> and devloping our applications.
+    </p>
+    <ul>
+        <li class="resourceList">Inventing Game of Life (John Conway)<br>
+            Numberphile<br>
+            Published on March 5th, 2014<br>
+            <a href="https://youtu.be/R9Plq-D1gEk" target="_blank">https://youtu.be/R9Plq-D1gEk</a><br>
+        </li>
+        <li class="resourceList">
+            The Lasting Lessons of John Conway's Game of Life<br>
+            Siobhan Roberts (The New York Times)<br>
+            Published on December 28th, 2020<br>
+            <a href="https://www.nytimes.com/2020/12/28/science/math-conway-game-of-life.html" target="_blank">https://www.nytimes.com/2020/12/28/science/math-conway-game-of-life.html</a><br>
+        </li>
+        <li class="resourceList">
+            Let's BUILD a COMPUTER in CONWAY's GAME of LIFE<br>
+            Alan Zucconi<br>
+            Published on October  5th, 2020<br>
+            <a href="https://youtu.be/Kk2MH9O4pXY" target="_blank">https://youtu.be/Kk2MH9O4pXY</a><br>
+        </li>
+        <li class="resourceList">
+            Mathematician John Horton Conway, a 'magical genius' known for inventing the 'Game of Life,' dies at age 82<br>
+            Catherine Zandonella (Princeton University News)<br>
+            Published on April 14th, 2020<br>
+            <a href="https://www.princeton.edu/news/2020/04/14/mathematician-john-horton-conway-magical-genius-known-inventing-game-life-dies-age" target="_blank">https://www.princeton.edu/news/2020/04/14/mathematician-john-horton-conway-magical-genius-known-inventing-game-life-dies-age</a><br>
+        </li>
+    </ul>
+    
+</div>
+</div>
+</body>
+
+</html>
